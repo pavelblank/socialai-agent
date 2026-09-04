@@ -1,0 +1,55 @@
+{
+  "_README": "Copy this file to connections.json and fill in only the platforms you want. connections.json is gitignored - your real tokens never get committed. Easiest way: run the dashboard and use the Connections page instead of editing this by hand.",
+  "telegram": {
+    "connected": false,
+    "token": "BOT_TOKEN_FROM_@BotFather",
+    "chat_id": "",
+    "account": ""
+  },
+  "telegram_channel": {
+    "connected": false,
+    "token": "SAME_OR_OTHER_BOT_TOKEN",
+    "chat_id": "-100xxxxxxxxxx",
+    "account": ""
+  },
+  "youtube": {
+    "connected": false,
+    "account": "",
+    "channel_id": "",
+    "privacy": "private",
+    "_note": "OAuth client secret goes in config/youtube_client.json (see README). privacy: private|unlisted|public"
+  },
+  "tiktok": {
+    "connected": false,
+    "account": "",
+    "_note": "OAuth client goes in config/tiktok_client.json. Public posting needs TikTok API audit approval; until then posts are private."
+  },
+  "bluesky": {
+    "connected": false,
+    "handle": "you.bsky.social",
+    "app_password": "xxxx-xxxx-xxxx-xxxx",
+    "account": ""
+  },
+  "mastodon": {
+    "connected": false,
+    "instance": "https://mastodon.social",
+    "token": "ACCESS_TOKEN",
+    "account": ""
+  },
+  "discord": {
+    "connected": false,
+    "token": "BOT_TOKEN",
+    "channel_id": "",
+    "account": ""
+  },
+  "x": {
+    "connected": false,
+    "status": "read-only on free tier",
+    "api_key": "",
+    "api_key_secret": "",
+    "access_token": "",
+    "access_token_secret": "",
+    "bearer": "",
+    "account": ""
+  }
+}

@@ -1,0 +1,11 @@
+# Optional overrides. Copy to paths.toml only if you need them.
+# By default SocialAI finds everything automatically:
+#   - project paths are relative to this repo
+#   - ffmpeg / ffprobe are taken from your system PATH
+
+# Uncomment and set if ffmpeg is NOT on your PATH:
+# ffmpeg  = "C:/path/to/ffmpeg/bin/ffmpeg.exe"
+# ffprobe = "C:/path/to/ffmpeg/bin/ffprobe.exe"
+
+# Vertical video resolution (width x height)
+video_size = "720x1280"

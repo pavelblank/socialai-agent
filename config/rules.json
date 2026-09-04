@@ -1,0 +1,363 @@
+{
+  "_comment": "THE AGENT'S BRAIN. Decides WHAT to make, WHERE to post it, and WHEN. Edit from the dashboard or by hand. Ships PAUSED - set paused=false (or click Resume in the dashboard) when you're ready to go live.",
+  "niche": "your topic here (e.g. self-healing, science facts, fitness motivation)",
+  "language": "en",
+  "voice": "en-US-AvaMultilingualNeural",
+  "paused": true,
+  "visuals": {
+    "default": {
+      "image_style": "cinematic, warm, healing, soft light, aesthetically pleasing, polished, high detail",
+      "female_presenter": true,
+      "note": "Appealing, confident female-led aesthetic that draws attention but stays platform-safe."
+    },
+    "detect": {
+      "facts_mystery_science": "mysterious, moody cinematic, discovery, wonder",
+      "lifestyle_fashion_beauty": "stylish, trendy, fashion-forward, aesthetic, glamour",
+      "fitness_motivation": "energetic, bright, motivating, active, bold",
+      "finance_business": "clean, confident, modern, trustworthy",
+      "self_healing_spiritual": "calming, healing, warm light, serene, hopeful",
+      "default": "cinematic, engaging, polished"
+    }
+  },
+  "avatar": {
+    "enabled": false,
+    "style": "realistic",
+    "gender": "female",
+    "outfit": "sporty",
+    "seed": 505,
+    "voice": "en-GB-LibbyNeural",
+    "max_seg_sec": 6
+  },
+  "topic_sources": {
+    "google_trends": {
+      "enabled": true,
+      "weight": 1,
+      "note": "pulse check only (news/celebrity heavy - weak for faceless reels)"
+    },
+    "reddit": {
+      "enabled": true,
+      "weight": 4,
+      "subreddits": [
+        "todayilearned",
+        "Damnthatsinteresting",
+        "interestingasfuck",
+        "NatureIsFuckingLit",
+        "unexplained",
+        "oddlysatisfying",
+        "Futurology",
+        "askscience",
+        "Meditation",
+        "selfimprovement",
+        "spirituality",
+        "Psychology"
+      ],
+      "note": "curiosity content + self-healing/spiritual/emotional niche that converts to faceless reels"
+    },
+    "youtube_trending": {
+      "enabled": true,
+      "weight": 2,
+      "search_terms": [
+        "mind blowing facts",
+        "science mystery explained",
+        "future technology 2026",
+        "money habits that changed my life",
+        "business lessons",
+        "fitness motivation transformation",
+        "self healing daily habits",
+        "how to heal emotionally"
+      ],
+      "note": "YouTube's classic /feed/trending page was discontinued by YouTube (confirmed 2026-09-02, redirects to home) - this now searches yt-dlp against topic-relevant terms spanning ALL our categories (facts/tech, business/finance, fitness, self-healing), not just one niche, so results stay trendy AND on-brand instead of generic pop-culture trending."
+    },
+    "manual_list": {
+      "enabled": true,
+      "weight": 5,
+      "topics": [
+        "add your own topic ideas here",
+        "one per line",
+        "these rank above scraped topics"
+      ],
+      "note": "Your hand-picked topics. Ranked above scraped sources."
+    },
+    "trendpulse": {
+      "enabled": true,
+      "weight": 2,
+      "sources": [
+        "mastodon",
+        "bluesky",
+        "hackernews"
+      ],
+      "note": "Real-time trending FROM Mastodon and Bluesky - platforms we already post to, so this is on-brand signal not generic noise. Via the trend-pulse library (MIT, github.com/claude-world/trend-pulse), found + verified working 2026-09-02. Its own reddit source hits the same 403 block ours does, so left out here - google_trends already covered by our own source above."
+    }
+  },
+  "limits": {
+    "youtube": {
+      "per_day": 2,
+      "note": "API quota allows ~6/day. 2 is safe."
+    },
+    "instagram": {
+      "per_day": 3,
+      "note": "Platform cap is 25/day."
+    },
+    "facebook": {
+      "per_day": 3,
+      "note": ""
+    },
+    "threads": {
+      "per_day": 5,
+      "note": ""
+    },
+    "telegram": {
+      "per_day": 20,
+      "note": "No real limit."
+    },
+    "tiktok": {
+      "per_day": 0,
+      "note": "Manual only - API needs audit approval."
+    }
+  },
+  "rules": {
+    "never_repeat_topic": true,
+    "repeat_cooldown_days": 90,
+    "skip_if_offline": true,
+    "only_on_ac_power": true,
+    "alert_on_failure": "telegram",
+    "first_upload_privacy": "private",
+    "_privacy_note": "Uploads start PRIVATE so a bug can never publish garbage. Set connections.json youtube.privacy='public' once you trust it.",
+    "blocked_words": [
+      "medication advice",
+      "guaranteed cure",
+      "miracle cure",
+      "make money fast",
+      "get rich quick",
+      "crypto profits",
+      "magic weight loss",
+      "medical claims"
+    ],
+    "_blocked_note": "Titles/descriptions containing these phrases are RECOMMENDED-FLAG / policy-sensitive. The agent strips them before posting so nothing gets flagged."
+  },
+  "learning": {
+    "enabled": true,
+    "score_after_hours": 48,
+    "good_multiplier": 1.5,
+    "bad_multiplier": 0.5,
+    "_note": "A topic scoring 1.5x the average is a WINNER and gets more like it. Below 0.5x is a LOSER and gets avoided."
+  },
+  "approval_mode": "auto",
+  "growth_threshold": 50,
+  "schedule_growth": [],
+  "schedule_steady": [
+    {
+      "id": "youtube-tue",
+      "enabled": true,
+      "time": "06:00",
+      "days": "tue",
+      "type": "video",
+      "scenes": 4,
+      "platforms": [
+        "youtube",
+        "telegram"
+      ],
+      "note": "YouTube Short #1 of the week - 06:00 Tuesday, auto-made + auto-posted. (steady-state schedule, active once 50+ posts made)",
+      "jitter_minutes": [
+        10,
+        20,
+        35,
+        50,
+        70,
+        90
+      ]
+    },
+    {
+      "id": "youtube-fri",
+      "enabled": true,
+      "time": "06:00",
+      "days": "fri",
+      "type": "video",
+      "scenes": 4,
+      "platforms": [
+        "youtube",
+        "telegram"
+      ],
+      "note": "YouTube Short #2 of the week - 06:00 Friday, auto-made + auto-posted. (steady-state schedule, active once 50+ posts made)",
+      "jitter_minutes": [
+        10,
+        20,
+        35,
+        50,
+        70,
+        90
+      ]
+    },
+    {
+      "id": "filler-mon",
+      "enabled": true,
+      "time": "13:00",
+      "days": "mon",
+      "type": "image",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "threads",
+        "telegram"
+      ],
+      "jitter_minutes": [
+        10,
+        25,
+        45,
+        70,
+        100,
+        130
+      ],
+      "note": "Monday image post - light content, no YouTube upload (quota-safe). (steady-state schedule, active once 50+ posts made)"
+    },
+    {
+      "id": "filler-wed",
+      "enabled": true,
+      "time": "13:00",
+      "days": "wed",
+      "type": "text",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "threads",
+        "telegram"
+      ],
+      "jitter_minutes": [
+        10,
+        25,
+        45,
+        70,
+        100,
+        130
+      ],
+      "note": "Wednesday text post - light content, no YouTube upload (quota-safe). (steady-state schedule, active once 50+ posts made)"
+    },
+    {
+      "id": "filler-thu",
+      "enabled": true,
+      "time": "13:00",
+      "days": "thu",
+      "type": "image",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "threads",
+        "telegram"
+      ],
+      "jitter_minutes": [
+        10,
+        25,
+        45,
+        70,
+        100,
+        130
+      ],
+      "note": "Thursday image post - light content, no YouTube upload (quota-safe). (steady-state schedule, active once 50+ posts made)"
+    },
+    {
+      "id": "filler-sat",
+      "enabled": true,
+      "time": "13:00",
+      "days": "sat",
+      "type": "text",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "threads",
+        "telegram"
+      ],
+      "jitter_minutes": [
+        10,
+        25,
+        45,
+        70,
+        100,
+        130
+      ],
+      "note": "Saturday text post - light content, no YouTube upload (quota-safe). (steady-state schedule, active once 50+ posts made)"
+    },
+    {
+      "id": "filler-sun",
+      "enabled": true,
+      "time": "13:00",
+      "days": "sun",
+      "type": "image",
+      "platforms": [
+        "instagram",
+        "facebook",
+        "threads",
+        "telegram"
+      ],
+      "jitter_minutes": [
+        10,
+        25,
+        45,
+        70,
+        100,
+        130
+      ],
+      "note": "Sunday image post - light content, no YouTube upload (quota-safe). (steady-state schedule, active once 50+ posts made)"
+    }
+  ],
+  "ollama_model": "llama3.2:3b",
+  "dynamic_fillers": {
+    "enabled": true,
+    "count_range": [
+      5,
+      8
+    ],
+    "window": [
+      "09:00",
+      "22:00"
+    ],
+    "platforms": [
+      "instagram",
+      "facebook",
+      "threads",
+      "telegram"
+    ],
+    "_note": "Real day-to-day randomization: different COUNT (5-8) and TIMES each day. At most 1 of them lands in the 8-11am low-traffic window.",
+    "restricted_band": [
+      "08:00",
+      "11:00"
+    ],
+    "restricted_max": 1
+  },
+  "dynamic_videos": {
+    "enabled": true,
+    "count_range": [
+      1,
+      2
+    ],
+    "window": [
+      "12:00",
+      "21:00"
+    ],
+    "platforms": [
+      "youtube",
+      "tiktok",
+      "telegram"
+    ],
+    "_note": "No more fixed 8am slot - random 1-2 videos/day between noon and 9pm, when people are actually online."
+  },
+  "dynamic_tiktok": {
+    "enabled": true,
+    "count_range": [
+      3,
+      3
+    ],
+    "window": [
+      "12:00",
+      "17:00"
+    ],
+    "platforms": [
+      "tiktok"
+    ],
+    "_note": "TikTok's OWN track, separate from the shared YouTube video schedule above - always exactly 3/day, all between 12pm-5pm, hard-restricted to TikTok only (never also posts to YouTube/Telegram/etc)."
+  },
+  "dashboard_auth": {
+    "enabled": false,
+    "username": "admin",
+    "password": "change-me"
+  }
+}

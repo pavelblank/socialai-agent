@@ -1,0 +1,26 @@
+# SocialAI Agent - Python dependencies
+# Install with:  pip install -r requirements.txt
+#
+# NOT installed by pip (see README "Prerequisites"):
+#   - Ollama          https://ollama.com         (local text model)
+#   - FFmpeg          https://ffmpeg.org         (video/audio assembly, must be on PATH)
+
+# Text-to-speech (free, no API key)
+edge-tts>=7.0.0
+
+# Word-level captions (CPU Whisper)
+faster-whisper>=1.0.0
+
+# YouTube trending discovery
+yt-dlp>=2024.1.1
+
+# Multi-source trend aggregation (Mastodon / Bluesky / Hacker News)
+trend-pulse>=0.1.0
+
+# YouTube Data API upload + OAuth
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.2.0
+google-auth-httplib2>=0.2.0
+
+# Optional: talking-avatar feature (disabled by default in config/rules.json)
+gradio-client>=1.0.0

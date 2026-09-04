@@ -1,0 +1,6 @@
+{
+  "_README": "Optional. Map a content category to a YouTube playlist ID so uploads auto-file themselves. Leave as-is to skip. Copy to youtube_playlists.json to use.",
+  "self_healing_spiritual": "PLxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "facts_mystery_science": "PLxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "default": ""
+}

@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>SocialAI - TikTok Callback</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:640px;margin:60px auto;padding:0 20px;color:#222}
+h1{font-size:22px}code{background:#f2f2f2;padding:10px 14px;border-radius:6px;display:block;
+word-break:break-all;font-size:14px;margin:12px 0}
+.err{color:#b00}</style></head><body>
+<h1>TikTok authorization complete</h1>
+<p id="msg">Reading the response...</p>
+<div id="out"></div>
+<script>
+const q = new URLSearchParams(window.location.search);
+const code = q.get('code');
+const state = q.get('state');
+const err = q.get('error');
+const out = document.getElementById('out');
+const msg = document.getElementById('msg');
+if (err) {
+  msg.textContent = 'TikTok returned an error:';
+  out.innerHTML = '<p class="err">' + err + ' - ' + (q.get('error_description')||'') + '</p>';
+} else if (code) {
+  msg.textContent = 'Copy this code and send it back:';
+  out.innerHTML = '<strong>code:</strong><code>' + code + '</code>' +
+                   '<strong>state:</strong><code>' + state + '</code>';
+} else {
+  msg.textContent = 'No code found in the URL. Something went wrong.';
+}
+</script>
+</body></html>

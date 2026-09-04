@@ -1,0 +1,25 @@
+# --- secrets: real platform tokens / OAuth credentials ---
+config/connections.json
+config/*_client.json
+config/*_token.json
+config/tiktok_pending.json
+config/paths.toml
+
+# --- local state, generated content, logs ---
+venv/
+.venv/
+__pycache__/
+*.pyc
+data/*
+!data/.gitkeep
+out/*
+!out/.gitkeep
+logs/*
+!logs/.gitkeep
+*.log
+
+# --- editor / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
